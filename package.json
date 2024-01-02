@@ -4,5 +4,8 @@
     },
     "scripts": {
         "test": "jest --watch"
+    },
+    "dependencies": {
+        "node": "^21.2.0"
     }
 }
