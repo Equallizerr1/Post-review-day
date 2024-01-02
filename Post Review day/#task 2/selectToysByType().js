@@ -6,9 +6,9 @@ function selectToysByType(presentsArray, type) {
 	const filteredPresent = newPresent.filter((present) => {
 		return present.type === type;
 	});
-	if (filteredPresent.length === 0) {
-		return "Present type not found";
-	}
+	// if (filteredPresent.length === 0) {
+	// 	return "Present type not found";
+	// }
 
 	return filteredPresent;
 }

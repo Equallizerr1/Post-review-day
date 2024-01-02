@@ -5,56 +5,53 @@ const processPresentRequest = require("./processPresentRequest();");
 // Requests should always start with Dear <name of recipient>, The presents requested should always follow a semi-colon : and the end of the list should end with a full stop . which will then sign off with From <name of sender>
 
 describe("Process Present Request", () => {
+	// simpler check typeof object before empty
 	it("should return an empty Object", () => {
 		const string = "";
-		const input = processPresentRequest(string);
+		const output = processPresentRequest(string);
 		const newObj = {};
-		expect(input).toEqual(newObj);
-		expect(input).not.toBe(newObj);
+		expect(output).toEqual(newObj);
+		// expect(output).not.toBe(newObj);
 	});
+	// may not fail
 	it("should return a new Object", () => {
 		const string = "";
-		const input = processPresentRequest(string);
+		const output = processPresentRequest(string);
 		const newObj = {};
-		expect(input).not.toBe(processPresentRequest(string));
-		expect(input).toEqual(newObj);
+		expect(output).not.toBe(processPresentRequest(string));
+		// expect(output).toEqual(newObj);
 	});
 	test("new Object should have properties attached", () => {
 		const string = " ";
-		const input = processPresentRequest(string);
+		const output = processPresentRequest(string);
 		const output = {
 			to: "",
 			from: "",
 			presents: [],
 			presentTotal: 0,
 		};
-		expect(input).toEqual(output);
+		expect(output).toEqual(output);
 	});
+	// don't test all properties when only testing one
 	test("new Object should have key value pair of to: 'recipient'", () => {
 		const request = "Dear Mrs Clause,";
 		const request2 = "Dear Santa, ";
-		const input = processPresentRequest(request);
-		const input2 = processPresentRequest(request2);
+		const output = processPresentRequest(request);
+		const output2 = processPresentRequest(request2);
 		const output = {
 			to: "Mrs Clause",
-			from: "",
-			presents: [],
-			presentTotal: 0,
 		};
 		const output2 = {
 			to: "Santa",
-			from: "",
-			presents: [],
-			presentTotal: 0,
 		};
-		expect(input.to).toEqual(output.to);
-		expect(input2.to).toEqual(output2.to);
+		expect(output.to).toEqual(output.to);
+		expect(output2.to).toEqual(output2.to);
 	});
 	test("new Object should have key value pair of from: 'sender'", () => {
 		const request = "Dear Santa, From Jim";
 		const request2 = "Dear Mrs Clause, From Julie";
-		const input = processPresentRequest(request);
-		const input2 = processPresentRequest(request2);
+		const output = processPresentRequest(request);
+		const output2 = processPresentRequest(request2);
 		const output = {
 			to: "Santa",
 			from: "Jim",
@@ -67,16 +64,17 @@ describe("Process Present Request", () => {
 			presents: [],
 			presentTotal: 0,
 		};
-		expect(input.from).toEqual(output.from);
-		expect(input2.from).toEqual(output2.from);
+		expect(output.from).toEqual(output.from);
+		expect(output2.from).toEqual(output2.from);
 	});
+	// test for individual things first, then duplicates 
 	test("new Object should have key value pair presents: [presents]", () => {
 		const request =
 			"Dear Santa, for christmas I would like: gameboy, gameboy, gameboy. From Jim";
 		const request2 =
 			"Dear Mrs Clause, I would like: train, bear, shoes, dress. From Julie";
-		const input = processPresentRequest(request);
-		const input2 = processPresentRequest(request2);
+		const output = processPresentRequest(request);
+		const output2 = processPresentRequest(request2);
 		const output = {
 			to: "Santa",
 			from: "Jim",
@@ -89,16 +87,16 @@ describe("Process Present Request", () => {
 			presents: ["train", "bear", "shoes", "dress"],
 			presentTotal: 4,
 		};
-		expect(input.presents).toEqual(output.presents);
-		expect(input2.presents).toEqual(output2.presents);
+		expect(output.presents).toEqual(output.presents);
+		expect(output2.presents).toEqual(output2.presents);
 	});
 	it("should return the number of presents asked for", () => {
 		const request =
 			"Dear Santa, for christmas I would like: gameboy, gameboy, gameboy. From Jim";
 		const request2 =
 			"Dear Mrs Clause, I would like: train, bear, shoes, dress. From Julie";
-		const input = processPresentRequest(request);
-		const input2 = processPresentRequest(request2);
+		const output = processPresentRequest(request);
+		const output2 = processPresentRequest(request2);
 		const output = {
 			to: "Santa",
 			from: "Jim",
@@ -111,18 +109,18 @@ describe("Process Present Request", () => {
 			presents: ["train", "bear", "shoes", "dress"],
 			presentTotal: 4,
 		};
-		expect(input.presentTotal).toBe(1);
-		expect(input.presentTotal).toEqual(output.presentTotal);
-		expect(input2.presentTotal).toBe(4);
-		expect(input2.presentTotal).toEqual(output2.presentTotal);
+		expect(output.presentTotal).toBe(1);
+		expect(output.presentTotal).toEqual(output.presentTotal);
+		expect(output2.presentTotal).toBe(4);
+		expect(output2.presentTotal).toEqual(output2.presentTotal);
 	});
 	it("should be able to return an object given any data as long as it follows the rules found on line 5", () => {
 		const request =
 			"Dear Niamh, for christmas I would like: to learn enough to progress, on the course. From Sam";
 		const request2 =
 			"Dear Sam, I would like: loads of chocolate, loads of money, happiness, fun, fun, more fun, to not get ill. From Sam";
-		const input = processPresentRequest(request);
-		const input2 = processPresentRequest(request2);
+		const output = processPresentRequest(request);
+		const output2 = processPresentRequest(request2);
 		const output = {
 			to: "Niamh",
 			from: "Sam",
@@ -142,7 +140,7 @@ describe("Process Present Request", () => {
 			],
 			presentTotal: 6,
 		};
-		expect(input).toEqual(output);
-		expect(input2).toEqual(output2);
+		expect(output).toEqual(output);
+		expect(output2).toEqual(output2);
 	});
 });

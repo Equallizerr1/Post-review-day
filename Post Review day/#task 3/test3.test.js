@@ -21,16 +21,12 @@ describe("manage list should take an array of presents for the elves to find and
 		expect(itemRemoval()).toEqual(copyOfPresents);
 		expect(itemRemoval("train")).not.toEqual(copyOfPresents);
 		expect(itemRemoval("bike")).not.toEqual(copyOfPresents);
+		expect(itemRemoval("bike")).not.toBe(presentsList);
 	});
 	it("will return an array containing multiple items", () => {
 		const presentsList = ["train", "bike"];
 		const itemRemoval = manageList(presentsList);
 		expect(itemRemoval()).toEqual(["train", "bike"]);
-	});
-	it("can return a new list with specified item removed", () => {
-		const presentsList = ["train", "bike"];
-		const itemRemoval = manageList(presentsList);
-		expect(itemRemoval("train")).toEqual(["bike"]);
 	});
 	it("can return a new list with specified item removed", () => {
 		const presentsList = ["train", "bike"];
@@ -46,6 +42,7 @@ describe("manage list should take an array of presents for the elves to find and
 		const itemRemoval2 = manageList(presentsList2);
 		expect(itemRemoval2("bike")).toEqual(["gundam"]);
 
+		// should be separate test - logic is separate
 		const presentsList3 = ["gundam"];
 		const itemRemoval3 = manageList(presentsList3);
 		expect(itemRemoval3("gundam")).toEqual("list is empty");
@@ -71,4 +68,5 @@ describe("manage list should take an array of presents for the elves to find and
 		const itemRemoval3 = manageList(presentsList3);
 		expect(itemRemoval3("train")).toEqual(["gundam", "bike"]);
 	});
+	// filter will filter out multiple matches
 });

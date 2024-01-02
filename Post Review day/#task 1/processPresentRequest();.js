@@ -1,4 +1,6 @@
 function processPresentRequest(str) {
+	// 3 separate variables for what i'm working on
+	// tidies code up a bit
 	if (str.length === 0) {
 		return {};
 	}

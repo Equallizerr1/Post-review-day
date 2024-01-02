@@ -4,6 +4,7 @@ const countPresent = (str, array) => {
 		if (str === element) total++;
 		if (Array.isArray(element)) total += countPresent(str, element);
 	});
+	array[0] = "bananas"
 	return total;
 };
 
